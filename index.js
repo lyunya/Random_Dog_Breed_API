@@ -24,7 +24,7 @@ function displayResults(responseJson) {
   $('.image-container').empty();
   if (responseJson.status === 'error') {
     const badResult =  `<p>Sorry, pick another breed</p>`;
-  $('.results').append(badResult);
+  $('.image-container').append(badResult);
 } else{
   const result =  `<img src="${responseJson.message}" class="results-img">`;
   $('.image-container').append(result);
