@@ -14,7 +14,7 @@ function getDogImages(input) {
   fetch(`https://dog.ceo/api/breed/${input}/images/random`)
     .then(response => response.json())
     .then(responseJson =>
-      displayResults(responseJson.message)
+      displayResults(responseJson)
     )
     .catch(error => alert('Something went wrong. Try again later.'))
     }
@@ -22,8 +22,13 @@ function getDogImages(input) {
 function displayResults(responseJson) {
   $('.results').removeClass('hidden');
   $('.image-container').empty();
-  const result =  `<img src="${responseJson}" class="results-img">`;
+  if (responseJson.status === 'error') {
+    const badResult =  `<p>Sorry, pick another breed</p>`;
+  $('.results').append(badResult);
+} else{
+  const result =  `<img src="${responseJson.message}" class="results-img">`;
   $('.image-container').append(result);
+}
 };
 
 
